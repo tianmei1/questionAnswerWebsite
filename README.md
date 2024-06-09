@@ -36,46 +36,33 @@ A step by step series of examples that tell you how to get a development environ
 
 #### Setting up the Backend
 
-1. Navigate to the backend directory:
-   ```bash
-   cd backend
-   Create a virtual environment and activate it:
-   ```
+
 
 ```bash
-2. Copy code
+Navigate to the backend directory:
+cd backend
+
+Create a virtual environment and activate it:
 python -m venv venv
 source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-Install the required packages:
 
-bash
-Copy code
+Install the required packages:
 pip install -r requirements.txt
 Run migrations to set up your database:
 
-bash
-Copy code
 python manage.py migrate
 Start the Django development server:
 
-bash
-Copy code
 python manage.py runserver
 Setting up the Frontend
+
 Navigate to the frontend directory:
-
-bash
-Copy code
 cd frontend
+
 Install the necessary npm packages:
-
-bash
-Copy code
 npm install
-Start the React development server:
 
-bash
-Copy code
+Start the React development server:
 npm start
 Now navigate to http://localhost:3000 in your browser to see the application running.
 
