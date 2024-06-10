@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../LoginForm.css"; // Make sure to create this CSS file
 import axios from "axios";
 
-function LoginForm(setToken) {
+const LoginForm = ({ setToken, setUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -15,7 +15,9 @@ function LoginForm(setToken) {
         email,
         password,
       });
+      console.log(response.data);
       setToken(response.data);
+      setUser(response.data.user);
     } catch (error) {
       console.error("Login error:", error);
     }
@@ -45,6 +47,6 @@ function LoginForm(setToken) {
       </form>
     </div>
   );
-}
+};
 
 export default LoginForm;

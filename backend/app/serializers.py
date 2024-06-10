@@ -16,6 +16,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token = super().get_token(user)
         # Add custom claims
         token['email'] = user.email
+        token['username'] = user.username
         return token
 
     def validate(self, attrs):
@@ -31,8 +32,14 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
                 raise serializers.ValidationError('Incorrect password.')
             
             attrs['username'] = user.username
-
-        return super().validate(attrs)
+            data = super().validate(attrs)
+            data['user'] = {
+            'username': self.user.username,
+            'email': self.user.email,
+            'first_name': self.user.first_name,
+            'last_name': self.user.last_name,
+        }
+        return data
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

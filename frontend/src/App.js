@@ -18,6 +18,16 @@ function App() {
       localStorage.removeItem("token");
     }
   }, [token]);
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("user")) || null
+  );
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+    } else {
+      localStorage.removeItem("user");
+    }
+  }, [user]);
 
   return (
     <Router>
@@ -26,7 +36,7 @@ function App() {
           path="/login"
           element={
             !token ? (
-              <LoginForm setToken={setToken} />
+              <LoginForm setToken={setToken} setUser={setUser} />
             ) : (
               <Navigate to="/questions" replace />
             )
@@ -36,7 +46,7 @@ function App() {
           path="/questions"
           element={
             token ? (
-              <QuestionList token={token} />
+              <QuestionList token={token} user={user} />
             ) : (
               <Navigate to="/login" replace />
             )
