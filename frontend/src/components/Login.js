@@ -1,14 +1,24 @@
 import React, { useState } from "react";
 import "../LoginForm.css"; // Make sure to create this CSS file
+import axios from "axios";
 
-function LoginForm() {
+function LoginForm(setToken) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     console.log("Logging in with", email, password);
     // Here you can integrate your authentication logic
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/api/token/", {
+        email,
+        password,
+      });
+      setToken(response.data);
+    } catch (error) {
+      console.error("Login error:", error);
+    }
   };
 
   return (

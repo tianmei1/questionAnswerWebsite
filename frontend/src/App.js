@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -10,11 +10,38 @@ import LoginForm from "./components/Login";
 import QuestionList from "./components/QuestionList";
 
 function App() {
+  const [token, setToken] = useState(localStorage.getItem("token") || null);
+  useEffect(() => {
+    if (token) {
+      localStorage.setItem("token", token.access);
+    } else {
+      localStorage.removeItem("token");
+    }
+  }, [token]);
+
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/questions" element={<QuestionList />} />
+        <Route
+          path="/login"
+          element={
+            !token ? (
+              <LoginForm setToken={setToken} />
+            ) : (
+              <Navigate to="/questions" replace />
+            )
+          }
+        />
+        <Route
+          path="/questions"
+          element={
+            token ? (
+              <QuestionList token={token} />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
         <Route path="/" element={<Navigate to="/login" replace />} />
       </Routes>
     </Router>

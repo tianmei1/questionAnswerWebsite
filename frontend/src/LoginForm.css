@@ -13,7 +13,7 @@
     align-items: center;
     background: white;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 25px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 510px;
 }
@@ -24,6 +24,7 @@
     font-weight: 700;
     line-height: 28px;
     text-align: center;
+    margin-bottom: 40px; 
 }
 
 .login-form label {
@@ -35,6 +36,7 @@
 .login-form input {
     width: 462px;
     padding: 8px;
+    height: 43px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -44,9 +46,9 @@
     width: 200px;
     padding: 10px;
     border: none;
+    margin-bottom: 20px;
     border-radius: 20px;
     background: #6074DD;
-
     color: white;
     cursor: pointer;
     font-size: 16px;
