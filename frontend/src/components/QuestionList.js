@@ -1,24 +1,33 @@
 import React, { useEffect, useState } from "react";
 import QuestionItem from "./QuestionItem";
 import icon from "../icon.svg";
+import AskQuestionModal from "./AskQuestionModal";
+import User from "./User";
 
-function QuestionList({ token, user }) {
-  const [questions, setQuestions] = useState([]);
+function QuestionList({ token, user, fetchQuestions, questions }) {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/questions/")
-      .then((response) => response.json())
-      .then((data) => setQuestions(data))
-      .catch((error) => console.error("Error fetching data: ", error));
-  }, []);
+    fetchQuestions();
+  }, [token, fetchQuestions]);
 
   return (
     <div>
       <div className="button-container">
-        <div className="icon-conatiner">
-          <img src={icon} alt="Icon" className="image" />
-          <label>{user.user.username}</label>
-        </div>
-        <button className="ask-question-button">Ask question</button>
+        <User icon={icon} username={user.username} />
+        <button
+          className="ask-question-button"
+          onClick={() => setModalIsOpen(true)}
+        >
+          Ask question
+        </button>
+        <AskQuestionModal
+          isOpen={modalIsOpen}
+          onRequestClose={() => setModalIsOpen(false)}
+          fetchQuestions={fetchQuestions}
+          token={token}
+          user={user}
+        />
       </div>
 
       <div className="question-container">

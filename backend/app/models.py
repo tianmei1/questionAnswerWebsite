@@ -1,12 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-class Question(models.Model):
-    title = models.CharField(max_length=255)
-    text = models.TextField()
-    # If you have a foreign key to a user, make sure it is also correctly defined
-    # user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
-
 class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
 
@@ -15,3 +9,11 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.email
+class Question(models.Model):
+    title = models.CharField(max_length=200)
+    text = models.TextField()
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.title
+
+

@@ -1,4 +1,6 @@
 import React from "react";
+import icon from "../icon.svg";
+import User from "./User";
 
 function QuestionItem({ question }) {
   return (
@@ -8,7 +10,8 @@ function QuestionItem({ question }) {
         <div className="question-text">{question.text}</div>
       </div>
       <div className="question-footer">
-        Asked by: <span>{question.user}</span>
+        <span> Asked by: </span>
+        <User icon={icon} username={question.username} />
       </div>
     </div>
   );

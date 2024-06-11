@@ -6,10 +6,11 @@ from django.contrib.auth.models import User
 from .models import CustomUser
 
 class QuestionSerializer(serializers.ModelSerializer):
+    username = serializers.ReadOnlyField(source='user.username')
+
     class Meta:
         model = Question
-        fields = '__all__'
-
+        fields = ['id', 'title', 'text', 'username']
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
@@ -45,3 +46,5 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('username', 'email', 'first_name', 'last_name')
+
+

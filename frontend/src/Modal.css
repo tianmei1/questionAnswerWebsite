@@ -1,0 +1,61 @@
+/* src/components/Modal.css */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-container {
+    background: #FFFFFF;
+    padding: 20px;
+    width: 510px;
+    outline: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    border-radius: 25px;
+    opacity: 0px;
+  }
+  
+  .modal-container h2 {
+    margin-bottom: 20px;
+  }
+  
+  .modal-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+  .modal-container textarea{
+    resize: none; /* Prevent resizing by user */
+    height: 200px; /* Adjust height */
+  }
+  
+  .modal-container button {
+    align-items: center;
+    padding: 10px;
+    width: 180px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background: #99A5E5;
+    box-shadow: 0px 4px 8px 0px #6074DD40;
+  }
+  
+ .input-group{
+    width: 480px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
+ }
